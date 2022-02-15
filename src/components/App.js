@@ -14,6 +14,7 @@ export default function App() {
   const [friends, setFriends] = useState(friendsData);
   // 👉 4- Initialize a slice to keep track of the value of the search box
   // using an empty string as the initial value of the slice
+  const [searchTerm, setSearchTerm] = useState("")
 
   // 👉 5- Build a `changeStatus` function that takes an id and
   // changes the `married` from true to false and viceversa
@@ -25,6 +26,7 @@ export default function App() {
         return friend;
       }
     })
+    // return friend.id === id ? { ...friend, married: !friend.married } : friend;
     setFriends(updatedFriends);
   }
   // STRETCH - Make a helper function that returns
@@ -34,9 +36,19 @@ export default function App() {
     <div className='app-friends container'>
       {/* 👉 6- Render the Search component */}
       {/* STRETCH - Changes to the input should update the search term */}
-
+      <Search />
       {/* 👉 7- Render the FriendsList component */}
       {/* What prop/props does FriendsList need? */}
+      <FriendsList friends={friends} changeStatus={changeStatus} />
     </div>
   )
 }
+
+/**
+ * const props = {
+ *    friends: friends,
+ *    changeStatus: changeStatus
+ * }
+ * 
+ * FriendsList(props);
+ */
